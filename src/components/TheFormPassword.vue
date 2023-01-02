@@ -1,16 +1,18 @@
 <script setup>
 import { ref } from 'vue'
 
+const emit = defineEmits(['emitEntropy'])
+
 const includeUppercase = ref(false)
 const includeSymbols = ref(false)
 const includeNumbers = ref(false)
 const numbersOfCharacters = ref(5)
+const maxOfCharacters = ref(80)
+const minOfCharacters = ref(1)
 
 const password = ref('')
 const entropy = ref('')
 const message = ref('')
-const max = ref(80)
-const min = ref(1)
 
 const UPPERCASE_CHAR_CODES = arrayFromLowToHigh(65, 90)
 const LOWERCASE_CHAR_CODES = arrayFromLowToHigh(97, 122)
@@ -76,6 +78,7 @@ function generateEntropy(possibilityCharacter, characterAmount) {
         message.value = "mot de passe très robuste"
     }
     entropy.value = pEntropy
+    emit('emitEntropy', [pEntropy, message.value])
     return pEntropy;
 }
 
@@ -101,7 +104,7 @@ function clickToCopy(passwd) {
             <el-col>
                 <el-form id="passwordGeneratorForm" @submit.prevent>
                     <span>Nombre de caractères</span>
-                    <el-slider :max="max" :min="min" v-model="numbersOfCharacters" />
+                    <el-slider :max="maxOfCharacters" :min="minOfCharacters" v-model="numbersOfCharacters" />
                     <el-checkbox v-model="includeUppercase" label="Avec majuscules" size="large" />
                     <el-checkbox v-model="includeNumbers" label="Avec les nombres" size="large" />
                     <el-checkbox v-model="includeSymbols" label="Avec les symbols" size="large" />
@@ -115,7 +118,6 @@ function clickToCopy(passwd) {
         </el-row>
         <el-row>
             <el-col>
-                <h3 v-show="entropy">Entropie: {{ entropy }} bits, {{ message }}</h3>
                 <el-tag class="tag" @click="clickToCopy(passwd)" v-for="passwd in password" :key="passwd">
                     {{ passwd }}
                 </el-tag>

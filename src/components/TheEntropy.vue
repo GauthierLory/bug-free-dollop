@@ -1,6 +1,8 @@
 <script setup>
 import { ref } from 'vue'
 
+defineProps(['title'])
+
 const entropyGroup = ref([
     {
         col_xs: 12,
@@ -35,7 +37,7 @@ const entropyGroup = ref([
         col_md: 12,
         col_lg: 12,
         icon: "success",
-        title: "Fort",
+        title: "Robuste",
         subtitle: "Entropie <= 127 bits"
     },
     {
@@ -44,19 +46,24 @@ const entropyGroup = ref([
         col_md: 12,
         col_lg: 12,
         icon: "success",
-        title: "Très fort",
+        title: "Très robuste, voir inutile",
         subtitle: "Entropie >= 128 bits"
     },
 ])
 </script>
 <template>
     <el-card>
+        <el-row>
+            <el-col v-show="title">
+                <h3>Entropie: {{ title[0] }} bits, {{ title[1] }}</h3>
+            </el-col>
+        </el-row>
         <el-row justify="center">
             <div v-for="entropy in entropyGroup">
-                <e-col :xs="entropy.col_xs" :sm="entropy.col_sm" :md="entropy.col_md" :lg="entropy.col_lg">
+                <div :xs="entropy.col_xs" :sm="entropy.col_sm" :md="entropy.col_md" :lg="entropy.col_lg">
                     <el-result :icon="entropy.icon" :title="entropy.title" :sub-title="entropy.subtitle">
                     </el-result>
-                </e-col>
+                </div>
             </div>
         </el-row>
     </el-card>

@@ -33,10 +33,9 @@ const contents = [
     {
         title: ` Calculer l'entropie d'un mot de passe ?`,
         content: ` Nous calculons l'entropie d'un mot de passe en examinant d'abord le pool de caractères dont il est
-                composé. Par exemple, le mot de passe a une possibilité de 26 caractères de l'alphabet anglais.
-                alphabet anglais. En remplaçant le mot de passe par Password, vous augmenteriez votre pool à 52
-                caractères.
-                Type de caractères possibles
+                composé. Par exemple, le mot de passe a une possibilité de 26 caractères de l'alphabet francais/anglais.
+                En remplaçant le mot de passe par "Password", vous augmenteriez votre pool à 52, 26 caractères minuscules et 26 caractères majuscules
+                Exemple de type de caractères:
             <ul>
                 <li>Minuscules 26</li>
                 <li>Minuscules et majuscules 52</li>
@@ -44,7 +43,7 @@ const contents = [
                 <li>Alphanumérique et majuscule 62</li>
                 <li>Caractères ASCII courants 30</li>
                 <li>Liste de mots du Diceware 7 776</li>
-                <li>Mots du dictionnaire anglais 171 000</li>
+                <li>Mots du dictionnaire Francais 150 000</li>
             </ul>`
     },
 ]

@@ -1,15 +1,22 @@
 <script setup>
+import { ref } from 'vue'
 import TheHelloWorld from './components/TheHelloWorld.vue';
 import TheFormPassword from './components/TheFormPassword.vue';
 import TheEntropy from './components/TheEntropy.vue';
 import TheFaq from './components/TheFaq.vue';
 
+const entropyV = ref('')
+
+function callback(entropy) {
+  entropyV.value = entropy
+  console.log('entropyV', entropyV.value);
+}
 </script>
 <template>
   <main>
     <TheHelloWorld class="content" />
-    <TheFormPassword class="content" />
-    <TheEntropy class="content" />
+    <TheFormPassword @emitEntropy="callback" class="content" />
+    <TheEntropy :title="entropyV" class="content" />
     <TheFaq class="content" />
   </main>
 </template>
